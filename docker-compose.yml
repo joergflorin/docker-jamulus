@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  jamulus:
+    container_name: jamulus 
+    image: taghor/jamulus:latest
+    restart: unless-stopped
+    ports:
+      - "22124:22124/udp"
+    environment:
+      TZ: "Germany/Berlin"  
+    entrypoint:
+      - "Jamulus"
+      - "--server"
+      - "--nogui"
+      - "--multithreading"
+      - "--welcomemessage"
+      - "Welcome to the Jamulus rehersal room"
+      - "--numchannels"
+      - "16"
