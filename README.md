@@ -2,8 +2,14 @@
 
 Docker service definitions for Jamulus server.
 
-Run following command in this directory: 
+Set environment variables for jamulus configuration in the new file `env.txt` in this directory:
 
 ```
-docker-compose up -d
+WELCOME_MESSAGE="Welcome to Jamulus on Docker"
+```
+
+Finally run following command in this directory: 
+
+```
+./install.sh
 ```
