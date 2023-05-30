@@ -1,11 +1,12 @@
 version: "3.7"
+
 services:
   jamulus:
     container_name: jamulus 
     image: taghor/jamulus:latest
     restart: unless-stopped
-    ports:
-      - "22124:22124/udp"
+    networks:
+      - web
     environment:
       TZ: "Germany/Berlin"  
     entrypoint:
@@ -23,3 +24,16 @@ services:
       retries: 5
       start_period: 20s
       timeout: 10s
+    labels:
+      traefik.enable: true
+
+      traefik.udp.routers.jamulus.entrypoints: jamulus
+      traefik.udp.routers.jamulus.service: jamulus
+      traefik.udp.services.jamulus.loadbalancer.server.port: 22124
+
+      traefik.docker.network: web
+
+networks:
+    web:
+       external: true
+
